@@ -5,7 +5,13 @@ var basicUrl = document.location.protocol + "//" + document.location.host;
 
 document.addEventListener("DOMContentLoaded", function (event) {
     errorBlock = document.getElementById("error");
-});
+    searchString = new URLSearchParams(window.location.search);
+
+    filters["project"] = searchString.get('project');
+    filters["date"] = searchString.get('date');
+
+    console.log(filters)
+    });
 
 document.getElementById("flexRadioDefault1").addEventListener("change", function (event) {
     document.getElementById("form-file-type").style.display = "none";
@@ -185,9 +191,6 @@ function DateAsString(date) {
 document.getElementById("filter-project").addEventListener("change", function (event) {
     var index = document.getElementById("filter-project").options.selectedIndex;
     filters["project"] = document.getElementById("filter-project").options[index].text;
-    if(filters["project"] == "Без фильтров"){
-        filters["project"] = null;
-    }
     acceptFilters();
 });
 
@@ -208,3 +211,7 @@ function acceptFilters(){
     }
     window.location = basicUrl + "?" + projectFilterStr + "&" + dateFilterStr;
 }
+
+document.getElementById("no-filters").addEventListener("click", function(event){
+    window.location = basicUrl;
+});

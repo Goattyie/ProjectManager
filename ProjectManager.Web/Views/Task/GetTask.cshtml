@@ -8,8 +8,8 @@
 @model TaskPageViewModel
  <form id="update-task">
             <div class="modal-body">
+                <label id="taskId">@Model.Task.Id</label>
                 <div class="form-group">
-                    <label id="taskId">@Model.Task.Id</label>
                     <label>Имя задачи</label>
                     <input class="form-control" id="create-task-name" placeholder="Введите имя задачи" value="@Model.Task.TaskName">
                 </div>
